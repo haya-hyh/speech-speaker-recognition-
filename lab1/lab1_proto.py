@@ -4,9 +4,9 @@
 import numpy as np
 from scipy.signal import lfilter,hamming
 from  scipy.fftpack import fft
-from lab1_tools import *
+from .lab1_tools import *
 
-def mspec(samples, winlen = 400, winshift = 200, preempcoeff=0.97, nfft=512, samplingrate=20000)
+def mspec(samples, winlen = 400, winshift = 200, preempcoeff=0.97, nfft=512, samplingrate=20000):
     """Computes Mel Filterbank features.
 
     Args:
@@ -145,6 +145,7 @@ def logMelSpectrum(input, samplingrate):
     log_mel = np.log(mel_spec)
     return log_mel
 
+from scipy.fftpack.realtransforms import dct
 def cepstrum(input, nceps):
     """
     Calulates Cepstral coefficients from mel spectrum applying Discrete Cosine Transform
@@ -157,6 +158,8 @@ def cepstrum(input, nceps):
         array of Cepstral coefficients [N x nceps]
     Note: you can use the function dct from scipy.fftpack.realtransforms
     """
+    cepst = dct(input, type=2, axis=1, norm='ortho')[:, :nceps]
+    return cepst
 
 def dtw(x, y, dist):
     """Dynamic Time Warping.
