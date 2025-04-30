@@ -1,0 +1,3 @@
+1. lmfcc 计算和example不一致 需检查 已完成
+2. 合并后的HMM startprob & transmit matrix 也和example 不一致 concatHMM的问题 refer to pdf
+3. 基本跑通 测试过多 今后每天测试一两个模型即可
